@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="goldmine">
+
+    <select id="select:advertiser:paging" resultType="AdvertiserResult">
+        SELECT id, advertiser_name, description, created_time FROM advertiser
+        <where>
+            <if test="whereCondition != null">${whereCondition}</if>
+        </where>
+        ORDER BY ${orderBy}
+    </select>
+
+    <select id="select:advertiser:id" resultType="AdvertiserResult">
+        SELECT id, advertiser_name, description, created_time FROM advertiser WHERE id = #{id}
+    </select>
+
+    <update id="update:advertiser">
+        UPDATE advertiser
+        <set>
+            <if test="advertiser_name != null">advertiser_name = #{advertiserName},</if>
+            <if test="description != null">description = #{description},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete:advertiser">
+        DELETE FROM advertiser WHERE id = #{id}
+    </delete>
+
+    <insert id="insert:advertiser">
+        INSERT INTO advertiser (id, advertiser_name, description, created_time)
+        VALUES (#{id}, #{advertiserName}, #{description}, #{createdTime})
+    </insert>
+
+</mapper>

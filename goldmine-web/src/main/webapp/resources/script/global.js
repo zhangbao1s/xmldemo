@@ -1,5 +1,5 @@
 $(function () {
-    $('#theme ul a').click(function () {
+    $('#theme').find('ul a').click(function () {
         var theme = $(this).data('key');
         $.cookie('cookie_theme', theme, {expires: 365, path: '/'});
         location.reload();

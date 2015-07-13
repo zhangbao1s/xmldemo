@@ -13,7 +13,9 @@
     <context:component-scan base-package="com.adchina.api.advice"/>
     <context:component-scan base-package="com.alimama.goldmine.api.controller"/>
 
-    <bean id="objectMapper" class="com.adchina.api.json.CustomObjectMapper"/>
+    <bean id="objectMapper" class="com.adchina.api.json.CustomObjectMapper">
+        <property name="camelCaseToLowerCaseWithUnderscores" value="true"/>
+    </bean>
 
     <mvc:annotation-driven>
         <mvc:message-converters>

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import javax.annotation.PostConstruct;
 
 /**
  * 定制 Jackson 的 ObjectMapper
@@ -13,12 +14,21 @@ import com.fasterxml.jackson.databind.SerializationFeature;
  */
 public class CustomObjectMapper extends ObjectMapper {
 
-    public CustomObjectMapper() {
+    private boolean camelCaseToLowerCaseWithUnderscores = false;
+
+    public void setCamelCaseToLowerCaseWithUnderscores(boolean camelCaseToLowerCaseWithUnderscores) {
+        this.camelCaseToLowerCaseWithUnderscores = camelCaseToLowerCaseWithUnderscores;
+    }
+
+    @PostConstruct
+    public void init() {
         // 序列化时排除值为空属性
         setSerializationInclusion(JsonInclude.Include.NON_NULL);
         // 序列化时进行缩进输出
         configure(SerializationFeature.INDENT_OUTPUT, true);
-        // 反序列化时将下划线转换为驼峰
-        setPropertyNamingStrategy(PropertyNamingStrategy.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES);
+        // 序列化时将驼峰转为下划线
+        if (camelCaseToLowerCaseWithUnderscores) {
+            setPropertyNamingStrategy(PropertyNamingStrategy.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES);
+        }
     }
 }

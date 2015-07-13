@@ -20,7 +20,7 @@
     <update id="update:advertiser">
         UPDATE advertiser
         <set>
-            <if test="advertiser_name != null">advertiser_name = #{advertiserName},</if>
+            <if test="advertiserName != null">advertiser_name = #{advertiserName},</if>
             <if test="description != null">description = #{description},</if>
         </set>
         WHERE id = #{id}

@@ -1,3 +1,5 @@
+CREATE DATABASE `goldmine`;
+
 CREATE TABLE `advertiser` (
   `id` char(32) NOT NULL,
   `advertiser_name` varchar(64) NOT NULL DEFAULT '' COMMENT '名称',

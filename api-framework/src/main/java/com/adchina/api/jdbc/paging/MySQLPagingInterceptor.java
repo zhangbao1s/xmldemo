@@ -21,6 +21,9 @@ public class MySQLPagingInterceptor extends AbstractPagingInterceptor {
     public String getPagingSql(String sql, RowBounds rowBounds) {
         int offset = rowBounds.getOffset();
         int limit = rowBounds.getLimit();
+        if (limit == 0) {
+            return sql;
+        }
         return sql + String.format(" LIMIT %d, %d", offset, limit);
     }
 

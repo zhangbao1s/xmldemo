@@ -26,10 +26,12 @@ public class Paging<T> {
         this.pageSize = pageSize;
         this.totalCount = totalCount;
         this.itemList = itemList;
-        if (pageSize != 0 && totalCount % pageSize == 0) {
-            pageCount = totalCount / pageSize;
-        } else {
-            pageCount = totalCount / pageSize + 1;
+        if (pageSize != 0) {
+            if (totalCount % pageSize == 0) {
+                pageCount = totalCount / pageSize;
+            } else {
+                pageCount = totalCount / pageSize + 1;
+            }
         }
     }
 

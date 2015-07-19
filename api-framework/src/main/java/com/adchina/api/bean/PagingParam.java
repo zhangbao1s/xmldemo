@@ -65,6 +65,9 @@ public class PagingParam {
     // ----------------------------------------------------------------------------------------------------
 
     public int getPagingNumber() {
+        if (limit == 0) {
+            return 1;
+        }
         return offset / limit + 1;
     }
 
@@ -77,6 +80,9 @@ public class PagingParam {
     }
 
     public String getOrderBy() {
+        if (StringUtil.isEmpty(sort) || StringUtil.isEmpty(order)) {
+            return null;
+        }
         return sort + " " + order.toUpperCase();
     }
 }

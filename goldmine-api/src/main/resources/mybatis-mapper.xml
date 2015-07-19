@@ -10,7 +10,9 @@
         <where>
             <if test="whereCondition != null">${whereCondition}</if>
         </where>
-        ORDER BY ${orderBy}
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
     </select>
 
     <select id="select:advertiser:id" resultType="AdvertiserResult">

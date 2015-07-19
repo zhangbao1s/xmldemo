@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<c:set var="API" value="http://localhost:8080"/>
+<c:set var="API" value="http://localhost:8081"/>
 <c:set var="CTX" value="${pageContext.request.contextPath}"/>
 <c:set var="THEMES">
     default:Default,

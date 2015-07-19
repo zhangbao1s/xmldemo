@@ -20,7 +20,6 @@
         <jsp.version>2.2</jsp.version>
         <jstl.version>1.2</jstl.version>
         <spring.version>4.1.6.RELEASE</spring.version>
-        <retrofit.version>1.9.0</retrofit.version>
         <commons-collections.version>4.0</commons-collections.version>
         <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>2.18.1</maven-surefire-plugin.version>
@@ -82,12 +81,6 @@
             <version>${spring.version}</version>
             <scope>test</scope>
         </dependency>
-        <!-- Retrofit -->
-        <dependency>
-            <groupId>com.squareup.retrofit</groupId>
-            <artifactId>retrofit</artifactId>
-            <version>${retrofit.version}</version>
-        </dependency>
         <!-- Commons Collections -->
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -142,7 +135,7 @@
                 <version>${tomcat7-maven-plugin.version}</version>
                 <configuration>
                     <path>/</path>
-                    <port>8081</port>
+                    <port>8082</port>
                 </configuration>
             </plugin>
         </plugins>
@@ -155,7 +148,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <maven.rest.endpoint>http://localhost:8080</maven.rest.endpoint>
+                <maven.rest.endpoint>http://localhost:8081</maven.rest.endpoint>
                 <maven.rest.debug>true</maven.rest.debug>
             </properties>
         </profile>

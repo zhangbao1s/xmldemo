@@ -25,7 +25,7 @@
         <commons-lang.version>3.4</commons-lang.version>
         <commons-collections.version>4.0</commons-collections.version>
         <commons-dbcp.version>2.1</commons-dbcp.version>
-        <commons-email.version>1.4</commons-email.version>
+        <commons-codec.version>1.10</commons-codec.version>
         <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>2.18.1</maven-surefire-plugin.version>
         <maven-war-plugin.version>2.6</maven-war-plugin.version>
@@ -121,6 +121,11 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-dbcp2</artifactId>
             <version>${commons-dbcp.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>${commons-codec.version}</version>
         </dependency>
     </dependencies>
 

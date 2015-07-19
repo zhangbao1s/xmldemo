@@ -1,6 +1,8 @@
 package com.alimama.goldmine.api.controller;
 
 import com.adchina.api.bean.Response;
+import com.adchina.api.util.CodecUtil;
+import com.adchina.api.web.WebContext;
 import com.alimama.goldmine.api.param.LoginParam;
 import com.alimama.goldmine.api.service.UserService;
 import javax.validation.Valid;
@@ -30,7 +32,14 @@ public class UserController {
     ) {
         String username = param.getUsername();
         String password = param.getPassword();
-        userService.login(username, password);
-        return new Response().success();
+        boolean result = userService.login(username, password);
+        if (result) {
+            String token = CodecUtil.createUUID();
+            WebContext.Session.put("token", token);
+            WebContext.Cookie.put("token", token);
+            return new Response().success();
+        } else {
+            return new Response().failure("login_failure");
+        }
     }
 }

@@ -312,6 +312,7 @@ jdbc.max_idle=10
 
     <bean id="objectMapper" class="com.adchina.api.json.CustomObjectMapper">
         <property name="camelCaseToLowerCaseWithUnderscores" value="true"/>
+        <property name="dateFormatPattern" value="yyyy-MM-dd HH:mm:ss"/>
     </bean>
 
     <mvc:annotation-driven>

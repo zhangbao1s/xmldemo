@@ -37,9 +37,9 @@ public class CustomObjectMapper extends ObjectMapper {
             setPropertyNamingStrategy(PropertyNamingStrategy.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES);
         }
         // 自动转换日期格式
-        if (StringUtil.isEmpty(dateFormatPattern)) {
+        if (StringUtil.isNotEmpty(dateFormatPattern)) {
             DateFormat dateFormat = new SimpleDateFormat(dateFormatPattern);
-            super.setDateFormat(dateFormat);
+            setDateFormat(dateFormat);
         }
     }
 }

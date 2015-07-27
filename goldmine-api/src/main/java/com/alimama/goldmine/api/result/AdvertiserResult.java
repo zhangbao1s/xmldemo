@@ -1,5 +1,7 @@
 package com.alimama.goldmine.api.result;
 
+import java.util.Date;
+
 /**
  * 广告主结果对象
  *
@@ -15,6 +17,8 @@ public class AdvertiserResult {
     private String description;
 
     private String createdTime;
+
+    private Date lastModified;
 
     public String getId() {
         return id;
@@ -46,5 +50,13 @@ public class AdvertiserResult {
 
     public void setCreatedTime(String createdTime) {
         this.createdTime = createdTime;
+    }
+
+    public Date getLastModified() {
+        return lastModified;
+    }
+
+    public void setLastModified(Date lastModified) {
+        this.lastModified = lastModified;
     }
 }

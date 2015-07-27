@@ -16,7 +16,7 @@
     </select>
 
     <select id="select:advertiser:id" resultType="AdvertiserResult">
-        SELECT id, advertiser_name, description, created_time FROM advertiser WHERE id = #{id}
+        SELECT id, advertiser_name, description, created_time, last_modified FROM advertiser WHERE id = #{id}
     </select>
 
     <update id="update:advertiser">

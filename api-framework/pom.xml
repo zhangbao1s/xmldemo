@@ -163,7 +163,7 @@
                             <execution>
                                 <phase>package</phase>
                                 <goals>
-                                    <goal>jar-no-fork</goal>
+                                    <goal>jar</goal>
                                 </goals>
                             </execution>
                         </executions>
@@ -184,14 +184,30 @@
                     </plugin>
                 </plugins>
             </build>
+        </profile>
+        <profile>
+            <id>adchina-nexus</id>
             <distributionManagement>
                 <repository>
-                    <id>nexus-releases</id>
+                    <id>adchina-nexus-releases</id>
                     <url>http://nexus.ycmsh.com/content/repositories/releases/</url>
                 </repository>
                 <snapshotRepository>
-                    <id>nexus-snapshots</id>
+                    <id>adchina-nexus-snapshots</id>
                     <url>http://nexus.ycmsh.com/content/repositories/snapshots/</url>
+                </snapshotRepository>
+            </distributionManagement>
+        </profile>
+        <profile>
+            <id>alibaba-nexus</id>
+            <distributionManagement>
+                <repository>
+                    <id>alibaba-nexus-releases</id>
+                    <url>http://mvnrepo.alibaba-inc.com/nexus/content/repositories/releases/</url>
+                </repository>
+                <snapshotRepository>
+                    <id>alibaba-nexus-snapshots</id>
+                    <url>http://mvnrepo.alibaba-inc.com/nexus/content/repositories/snapshots/</url>
                 </snapshotRepository>
             </distributionManagement>
         </profile>

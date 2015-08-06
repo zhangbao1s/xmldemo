@@ -10,8 +10,38 @@
 
 <script>
     $(function () {
+        $.ajaxSetup({
+            statusCode: {
+                401: function () {
+                    $.removeCookie(Cookie.TOKEN);
+                    location.href = '${CTX}/';
+                }
+            }
+        });
+
+        $(document).ajaxSend(function (event, jqXHR, ajaxOptions) {
+            jqXHR.setRequestHeader(RequestHeader.USERNAME, $.cookie(Cookie.USERNAME));
+            jqXHR.setRequestHeader(RequestHeader.TOKEN, $.cookie(Cookie.TOKEN));
+        });
+
+//        $(document).ajaxComplete(function (event, jqXHR, ajaxOptions) {
+//            console.log('更新 cookie 中的 token');
+//            console.log(jqXHR.getAllResponseHeaders());
+//            var token = jqXHR.getResponseHeader('X-Token');
+//            console.log('token: ' + token);
+//            jqXHR.setRequestHeader(RequestHeader.TOKEN, token);
+//        });
+
+        $('#theme').find('ul a').click(function () {
+            var theme = $(this).data('key');
+            $.cookie(Cookie.THEME, theme, {expires: 365});
+            location.reload();
+            return false;
+        });
+
         $('#logout').click(function () {
             if (confirm('确定退出系统吗？')) {
+                $.removeCookie(Cookie.TOKEN);
                 location.href = '${CTX}/';
             }
             return false;

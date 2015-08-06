@@ -56,7 +56,13 @@
         var $username = $('#username');
         var $password = $('#password');
 
-        $username.focus();
+        var username = $.cookie(Cookie.USERNAME);
+        if (username) {
+            $username.val(username);
+            $password.focus();
+        } else {
+            $username.focus();
+        }
 
         $('#loginForm').submit(function () {
             Ajax.postForm({
@@ -79,6 +85,8 @@
                 },
                 success: function (response) {
                     if (response.meta.success) {
+                        $.cookie(Cookie.USERNAME, response.data.username);
+                        $.cookie(Cookie.TOKEN, response.data.token);
                         location.href = '${CTX}/home';
                     } else {
                         alert('用户名或密码有误！');

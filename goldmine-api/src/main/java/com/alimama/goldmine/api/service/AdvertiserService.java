@@ -1,6 +1,6 @@
 package com.alimama.goldmine.api.service;
 
-import com.adchina.api.exception.ServiceException;
+import com.adchina.api.jdbc.ServiceException;
 import com.adchina.api.jdbc.dao.DataAccessor;
 import com.adchina.api.jdbc.id.IdGenerator;
 import com.adchina.api.jdbc.paging.Paging;

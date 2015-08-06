@@ -18,18 +18,22 @@ import javax.servlet.http.HttpServletResponse;
 public class CorsFilter implements Filter {
 
     private String allowOrigin;
+    private String allowMethods;
+    private String allowHeaders;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         allowOrigin = filterConfig.getInitParameter("allowOrigin");
+        allowMethods = filterConfig.getInitParameter("allowMethods");
+        allowHeaders = filterConfig.getInitParameter("allowHeaders");
     }
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         HttpServletResponse response = (HttpServletResponse) res;
         response.setHeader("Access-Control-Allow-Origin", allowOrigin);
-        response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-        response.setHeader("Access-Control-Allow-Headers", "Content-Type");
+        response.setHeader("Access-Control-Allow-Methods", allowMethods);
+        response.setHeader("Access-Control-Allow-Headers", allowHeaders);
         chain.doFilter(req, res);
     }
 

@@ -101,6 +101,6 @@ public class CodecUtil {
      * 获取 UUID（32位）
      */
     public static String createUUID() {
-        return UUID.randomUUID().toString().replaceAll("-", "");
+        return UUID.randomUUID().toString().replaceAll("-", "").toUpperCase();
     }
 }

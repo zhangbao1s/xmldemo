@@ -27,6 +27,18 @@
 
     <mvc:default-servlet-handler/>
 
+    <bean id="tokenManager" class="com.adchina.api.security.impl.DefaultTokenManager"/>
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/login"/>
+            <bean class="com.adchina.api.security.TokenInterceptor">
+                <property name="tokenManager" ref="tokenManager"/>
+            </bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
     <bean class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor"/>
     
 </beans>

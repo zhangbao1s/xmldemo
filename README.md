@@ -186,11 +186,11 @@
         </init-param>
         <init-param>
             <param-name>allowHeaders</param-name>
-            <param-value>Content-Type,X-Username,X-Token</param-value>
+            <param-value>Content-Type,X-Token,X-Username</param-value>
         </init-param>
         <init-param>
             <param-name>exposeHeaders</param-name>
-            <param-value>Content-Type,X-Token</param-value>
+            <param-value>X-Token</param-value>
         </init-param>
     </filter>
     <filter-mapping>

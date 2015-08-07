@@ -85,6 +85,8 @@
                 },
                 success: function (response) {
                     if (response.meta.success) {
+                        // 登录成功，将 token 与 username 放入 cookie 中
+                        $.cookie(Cookie.TOKEN, response.data.token);
                         $.cookie(Cookie.USERNAME, response.data.username);
                         location.href = '${CTX}/home';
                     } else {

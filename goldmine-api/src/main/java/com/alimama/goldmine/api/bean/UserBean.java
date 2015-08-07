@@ -8,16 +8,8 @@ package com.alimama.goldmine.api.bean;
  */
 public class UserBean {
 
-    private String username;
     private String token;
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    private String username;
 
     public String getToken() {
         return token;
@@ -25,5 +17,13 @@ public class UserBean {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

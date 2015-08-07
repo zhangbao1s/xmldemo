@@ -23,7 +23,7 @@
     yeti:Yeti,
     material:Material,
 </c:set>
-<c:set var="system_theme" value="${cookie['cookie_theme'].value}"/>
+<c:set var="system_theme" value="${cookie['cookie.theme'].value}"/>
 <c:if test="${empty system_theme || system_theme == 'default'}">
     <c:set var="system_theme" value="default"/>
 </c:if>

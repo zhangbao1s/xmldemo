@@ -7,8 +7,6 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * 用于检查并生成 token 的切面
@@ -18,8 +16,6 @@ import org.slf4j.LoggerFactory;
  */
 @Aspect
 public class SecurityAspect {
-
-    private static Logger logger = LoggerFactory.getLogger(SecurityAspect.class);
 
     private static final String DEFAULT_TOKEN_NAME = "X-Token";
 
@@ -39,41 +35,29 @@ public class SecurityAspect {
 
     @Around("@annotation(org.springframework.web.bind.annotation.RequestMapping)")
     public Object around(ProceedingJoinPoint pjp) throws Throwable {
-        // 从 request header 中获取当前 token
-        String token = WebContext.getRequest().getHeader(tokenName);
-        // 若忽略了安全性检查，则无需检查 token，只需生成 token
+        // 从切点上获取目标方法
         MethodSignature methodSignature = (MethodSignature) pjp.getSignature();
         Method method = methodSignature.getMethod();
+        // 若目标方法忽略了安全性检查，则直接调用目标方法
         if (method.isAnnotationPresent(IgnoreSecurity.class)) {
-            createToken(token);
             return pjp.proceed();
         }
-        // 首先检查 token，然后生成 token
-        Object result;
-        String oldToken = checkToken(token);
-        logger.debug("old token: {}", oldToken);
-        try {
-            result = pjp.proceed();
-        } finally {
-            createToken(oldToken);
-        }
-        return result;
-    }
-
-    private String checkToken(String token) {
-        // 从 request header 中获取 token，并检查 token 的有效性
+        // 从 request header 中获取当前 token
+        String token = WebContext.getRequest().getHeader(tokenName);
+        // 检查 token 有效性
         if (!tokenManager.checkToken(token)) {
             String message = String.format("token [%s] is invalid", token);
             throw new TokenException(message);
         }
-        return token;
-    }
-
-    private void createToken(String oldToken) {
-        // 首先移除 token，然后生成 token，并将其写入 response header 中
-        tokenManager.removeToken(oldToken);
-        String newToken = tokenManager.createToken();
-        logger.debug("new token: {}", newToken);
-        WebContext.getResponse().setHeader(tokenName, newToken);
+        // 调用目标方法，最后更新 token
+        try {
+            return pjp.proceed();
+        } finally {
+            // 首先移除旧 token，然后创建新 token
+            tokenManager.removeToken(token);
+            token = tokenManager.createToken();
+            // 将最新 token 放入 response header 中
+            WebContext.getResponse().setHeader(tokenName, token);
+        }
     }
 }

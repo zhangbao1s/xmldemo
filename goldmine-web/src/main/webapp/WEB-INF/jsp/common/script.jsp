@@ -29,7 +29,9 @@
         // 当发送 ajax 请求结束时，从 response header 中获取新的 token，并将其放入 cookie 中
         $(document).ajaxComplete(function (event, xhr) {
             var token = xhr.getResponseHeader(RequestHeader.TOKEN);
-            $.cookie(Cookie.TOKEN, token);
+            if (token) {
+                $.cookie(Cookie.TOKEN, token);
+            }
         });
 
         // 当切换皮肤时，将 theme 数据放入 cookie，并刷新页面

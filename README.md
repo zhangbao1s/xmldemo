@@ -1,7 +1,7 @@
 # API Framework - 使用说明
 
-- 当前版本：0.1.0
-- 发布日期：2015-07-03
+- 当前版本：0.4.0
+- 发布日期：2015-08-07
 
 ## 配置方法
 
@@ -165,25 +165,36 @@
          http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
 
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:spring.xml</param-value>
     </context-param>
 
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
-
     <filter>
-        <filter-name>CorsFilter</filter-name>
+        <filter-name>corsFilter</filter-name>
         <filter-class>com.adchina.api.cors.CorsFilter</filter-class>
         <init-param>
             <param-name>allowOrigin</param-name>
             <param-value>*</param-value>
         </init-param>
+        <init-param>
+            <param-name>allowMethods</param-name>
+            <param-value>GET,POST,PUT,DELETE,OPTIONS</param-value>
+        </init-param>
+        <init-param>
+            <param-name>allowHeaders</param-name>
+            <param-value>Content-Type,X-Username,X-Token</param-value>
+        </init-param>
+        <init-param>
+            <param-name>exposeHeaders</param-name>
+            <param-value>Content-Type,X-Token</param-value>
+        </init-param>
     </filter>
     <filter-mapping>
-        <filter-name>CorsFilter</filter-name>
+        <filter-name>corsFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
@@ -326,6 +337,15 @@ jdbc.max_idle=10
     <mvc:default-servlet-handler/>
 
     <bean class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor"/>
+
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+
+    <bean id="tokenManager" class="com.adchina.api.security.impl.DefaultTokenManager"/>
+
+    <bean id="securityAspect" class="com.adchina.api.security.SecurityAspect">
+        <property name="tokenManager" ref="tokenManager"/>
+        <property name="tokenName" value="X-Token"/>
+    </bean>
 
 </beans>
 ```

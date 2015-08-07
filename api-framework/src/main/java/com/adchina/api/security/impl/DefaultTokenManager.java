@@ -19,7 +19,6 @@ public class DefaultTokenManager implements TokenManager {
     @Override
     public String createToken() {
         String token = CodecUtil.createUUID();
-        token = CodecUtil.encodeBASE64(token);
         tokenSet.add(token);
         return token;
     }

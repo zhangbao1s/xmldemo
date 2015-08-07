@@ -11,7 +11,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
-    public void login(String username, String password) {
+    public boolean login(String username, String password) {
         // TODO
+        return username.equals(password);
     }
 }

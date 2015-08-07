@@ -1,4 +1,4 @@
-package com.adchina.api.exception;
+package com.adchina.api.jdbc;
 
 /**
  * 服务运行异常

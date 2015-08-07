@@ -1,11 +1,13 @@
-$(function () {
-    $('#theme').find('ul a').click(function () {
-        var theme = $(this).data('key');
-        $.cookie('cookie_theme', theme, {expires: 365, path: '/'});
-        location.reload();
-        return false;
-    });
-});
+var Cookie = {
+    USERNAME: 'cookie_username',
+    TOKEN: 'cookie_token',
+    THEME: 'cookie_theme'
+};
+
+var RequestHeader = {
+    USERNAME: 'X-Username',
+    TOKEN: 'X-Token'
+};
 
 var Ajax = {
     get: function (options) {

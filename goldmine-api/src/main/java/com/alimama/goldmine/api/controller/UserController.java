@@ -1,6 +1,8 @@
 package com.alimama.goldmine.api.controller;
 
 import com.adchina.api.bean.Response;
+import com.adchina.api.security.IgnoreSecurity;
+import com.alimama.goldmine.api.bean.UserBean;
 import com.alimama.goldmine.api.param.LoginParam;
 import com.alimama.goldmine.api.service.UserService;
 import javax.validation.Valid;
@@ -24,13 +26,20 @@ public class UserController {
     /**
      * 登录
      */
+    @IgnoreSecurity
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public Response login(
         @Valid LoginParam param
     ) {
         String username = param.getUsername();
         String password = param.getPassword();
-        userService.login(username, password);
-        return new Response().success();
+        boolean result = userService.login(username, password);
+        if (result) {
+            UserBean userBean = new UserBean();
+            userBean.setUsername(username);
+            return new Response().success(userBean);
+        } else {
+            return new Response().failure("login_failure");
+        }
     }
 }

@@ -2,6 +2,7 @@ package com.adchina.api.security.impl;
 
 import com.adchina.api.security.TokenManager;
 import com.adchina.api.util.CodecUtil;
+import com.adchina.api.util.StringUtil;
 import java.util.Set;
 import java.util.concurrent.ConcurrentSkipListSet;
 
@@ -18,6 +19,7 @@ public class DefaultTokenManager implements TokenManager {
     @Override
     public String createToken() {
         String token = CodecUtil.createUUID();
+        token = CodecUtil.encodeBASE64(token);
         tokenSet.add(token);
         return token;
     }
@@ -29,6 +31,8 @@ public class DefaultTokenManager implements TokenManager {
 
     @Override
     public void removeToken(String token) {
-        tokenSet.remove(token);
+        if (StringUtil.isNotEmpty(token)) {
+            tokenSet.remove(token);
+        }
     }
 }

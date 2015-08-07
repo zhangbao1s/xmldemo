@@ -18,6 +18,7 @@
         <servlet.version>3.1.0</servlet.version>
         <mysql-connector-java.version>5.1.35</mysql-connector-java.version>
         <spring.version>4.1.6.RELEASE</spring.version>
+        <aspectj.version>1.8.6</aspectj.version>
         <mybatis.version>3.3.0</mybatis.version>
         <mybatis-spring.version>1.2.2</mybatis-spring.version>
         <jackson.version>2.5.3</jackson.version>
@@ -79,6 +80,24 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
+        </dependency>
+        <!-- Spring AOP -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <!-- AspectJ -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>${aspectj.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
+            <scope>runtime</scope>
         </dependency>
         <!-- MyBatis -->
         <dependency>

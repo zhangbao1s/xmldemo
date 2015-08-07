@@ -1,7 +1,7 @@
 package com.alimama.goldmine.api.controller;
 
 import com.adchina.api.bean.Response;
-import com.adchina.api.security.TokenManager;
+import com.adchina.api.security.IgnoreSecurity;
 import com.alimama.goldmine.api.bean.UserBean;
 import com.alimama.goldmine.api.param.LoginParam;
 import com.alimama.goldmine.api.service.UserService;
@@ -23,12 +23,10 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private TokenManager tokenManager;
-
     /**
      * 登录
      */
+    @IgnoreSecurity
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public Response login(
         @Valid LoginParam param
@@ -37,10 +35,8 @@ public class UserController {
         String password = param.getPassword();
         boolean result = userService.login(username, password);
         if (result) {
-            String token = tokenManager.createToken();
             UserBean userBean = new UserBean();
             userBean.setUsername(username);
-            userBean.setToken(token);
             return new Response().success(userBean);
         } else {
             return new Response().failure("login_failure");

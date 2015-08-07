@@ -86,7 +86,6 @@
                 success: function (response) {
                     if (response.meta.success) {
                         $.cookie(Cookie.USERNAME, response.data.username);
-                        $.cookie(Cookie.TOKEN, response.data.token);
                         location.href = '${CTX}/home';
                     } else {
                         alert('用户名或密码有误！');

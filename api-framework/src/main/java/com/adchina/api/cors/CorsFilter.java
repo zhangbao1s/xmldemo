@@ -20,12 +20,14 @@ public class CorsFilter implements Filter {
     private String allowOrigin;
     private String allowMethods;
     private String allowHeaders;
+    private String exposeHeaders;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         allowOrigin = filterConfig.getInitParameter("allowOrigin");
         allowMethods = filterConfig.getInitParameter("allowMethods");
         allowHeaders = filterConfig.getInitParameter("allowHeaders");
+        exposeHeaders = filterConfig.getInitParameter("exposeHeaders");
     }
 
     @Override
@@ -34,6 +36,7 @@ public class CorsFilter implements Filter {
         response.setHeader("Access-Control-Allow-Origin", allowOrigin);
         response.setHeader("Access-Control-Allow-Methods", allowMethods);
         response.setHeader("Access-Control-Allow-Headers", allowHeaders);
+        response.setHeader("Access-Control-Expose-Headers", exposeHeaders);
         chain.doFilter(req, res);
     }
 

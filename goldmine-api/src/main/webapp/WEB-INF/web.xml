@@ -30,7 +30,7 @@
         </init-param>
         <init-param>
             <param-name>exposeHeaders</param-name>
-            <param-value>Content-Type,X-Token</param-value>
+            <param-value>X-Token</param-value>
         </init-param>
     </filter>
     <filter-mapping>

@@ -1,12 +1,12 @@
 var Cookie = {
-    USERNAME: 'cookie_username',
-    TOKEN: 'cookie_token',
-    THEME: 'cookie_theme'
+    TOKEN: 'cookie.token',
+    USERNAME: 'cookie.username',
+    THEME: 'cookie.theme'
 };
 
 var RequestHeader = {
-    USERNAME: 'X-Username',
-    TOKEN: 'X-Token'
+    TOKEN: 'X-Token',
+    USERNAME: 'X-Username'
 };
 
 var Ajax = {

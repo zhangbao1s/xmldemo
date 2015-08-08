@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="goldmine">
+<mapper namespace="advertiser">
 
     <select id="select:advertiser:paging" resultType="AdvertiserResult">
         SELECT id, advertiser_name, description, created_time FROM advertiser

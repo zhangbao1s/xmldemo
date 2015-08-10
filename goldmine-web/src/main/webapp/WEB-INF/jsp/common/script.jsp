@@ -2,7 +2,7 @@
 
 <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
 <script src="http://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="http://cdn.bootcss.com/handlebars.js/3.0.3/handlebars.min.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap-table/1.8.1/bootstrap-table.min.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap-table/1.8.1/locale/bootstrap-table-zh-CN.min.js"></script>
@@ -24,14 +24,6 @@
         $(document).ajaxSend(function (event, xhr) {
             xhr.setRequestHeader(RequestHeader.TOKEN, $.cookie(Cookie.TOKEN));
             xhr.setRequestHeader(RequestHeader.USERNAME, $.cookie(Cookie.USERNAME));
-        });
-
-        // 当发送 ajax 请求结束时，从 response header 中获取新的 token，并将其放入 cookie 中
-        $(document).ajaxComplete(function (event, xhr) {
-            var token = xhr.getResponseHeader(RequestHeader.TOKEN);
-            if (token) {
-                $.cookie(Cookie.TOKEN, token);
-            }
         });
 
         // 当切换皮肤时，将 theme 数据放入 cookie，并刷新页面

@@ -34,7 +34,7 @@ public class SecurityAspect {
     }
 
     @Around("@annotation(org.springframework.web.bind.annotation.RequestMapping)")
-    public Object around(ProceedingJoinPoint pjp) throws Throwable {
+    public Object execute(ProceedingJoinPoint pjp) throws Throwable {
         // 从切点上获取目标方法
         MethodSignature methodSignature = (MethodSignature) pjp.getSignature();
         Method method = methodSignature.getMethod();
@@ -49,15 +49,7 @@ public class SecurityAspect {
             String message = String.format("token [%s] is invalid", token);
             throw new TokenException(message);
         }
-        // 调用目标方法，最后更新 token
-        try {
-            return pjp.proceed();
-        } finally {
-            // 首先移除旧 token，然后创建新 token
-            tokenManager.removeToken(token);
-            token = tokenManager.createToken();
-            // 将最新 token 放入 response header 中
-            WebContext.getResponse().setHeader(tokenName, token);
-        }
+        // 调用目标方法
+        return pjp.proceed();
     }
 }

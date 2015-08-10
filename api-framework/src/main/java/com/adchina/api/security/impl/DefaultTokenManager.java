@@ -2,9 +2,8 @@ package com.adchina.api.security.impl;
 
 import com.adchina.api.security.TokenManager;
 import com.adchina.api.util.CodecUtil;
-import com.adchina.api.util.StringUtil;
-import java.util.Set;
-import java.util.concurrent.ConcurrentSkipListSet;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 默认令牌管理器
@@ -14,24 +13,17 @@ import java.util.concurrent.ConcurrentSkipListSet;
  */
 public class DefaultTokenManager implements TokenManager {
 
-    private static Set<String> tokenSet = new ConcurrentSkipListSet<>();
+    private static Map<String, String> tokenMap = new ConcurrentHashMap<>();
 
     @Override
-    public String createToken() {
+    public String createToken(String username) {
         String token = CodecUtil.createUUID();
-        tokenSet.add(token);
+        tokenMap.put(token, username);
         return token;
     }
 
     @Override
     public boolean checkToken(String token) {
-        return tokenSet.contains(token);
-    }
-
-    @Override
-    public void removeToken(String token) {
-        if (StringUtil.isNotEmpty(token)) {
-            tokenSet.remove(token);
-        }
+        return tokenMap.containsKey(token);
     }
 }

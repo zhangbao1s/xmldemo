@@ -35,11 +35,16 @@
 
     <aop:aspectj-autoproxy proxy-target-class="true"/>
 
-    <bean id="tokenManager" class="com.adchina.api.security.impl.DefaultTokenManager"/>
+    <bean id="tokenManager" class="com.adchina.api.security.impl.RedisTokenManager" init-method="init">
+        <property name="host" value="localhost"/>
+        <property name="port" value="6379"/>
+        <property name="password" value="123456"/>
+        <property name="database" value="15"/>
+    </bean>
 
     <bean id="securityAspect" class="com.adchina.api.security.SecurityAspect">
         <property name="tokenManager" ref="tokenManager"/>
         <property name="tokenName" value="X-Token"/>
     </bean>
-    
+
 </beans>

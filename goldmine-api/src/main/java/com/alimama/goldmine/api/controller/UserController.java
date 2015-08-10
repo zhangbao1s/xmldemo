@@ -42,7 +42,7 @@ public class UserController {
         boolean result = userService.login(username, password);
         if (result) {
             // 创建 token
-            String token = tokenManager.createToken();
+            String token = tokenManager.createToken(username);
             // 封装 user 对象
             UserBean userBean = new UserBean();
             userBean.setToken(token);

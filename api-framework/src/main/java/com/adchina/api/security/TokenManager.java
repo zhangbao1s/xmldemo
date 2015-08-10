@@ -8,9 +8,7 @@ package com.adchina.api.security;
  */
 public interface TokenManager {
 
-    String createToken();
+    String createToken(String username);
 
     boolean checkToken(String token);
-
-    void removeToken(String token);
 }

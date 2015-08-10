@@ -1,6 +1,6 @@
 <c:choose>
     <c:when test="${system_theme == 'default'}">
-        <link href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+        <link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
         <link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" rel="stylesheet">
     </c:when>
     <c:when test="${system_theme == 'material'}">

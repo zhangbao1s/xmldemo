@@ -3,9 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="advertiser">
+<mapper namespace="AdvertiserMapper">
 
-    <select id="select:advertiser:paging" resultType="AdvertiserResult">
+    <cache type="com.adchina.api.jdbc.cache.RedisCache"/>
+
+    <select id="selectAdvertiserPaging" resultType="AdvertiserResult">
         SELECT id, advertiser_name, description, created_time FROM advertiser
         <where>
             <if test="whereCondition != null">${whereCondition}</if>
@@ -15,11 +17,11 @@
         </if>
     </select>
 
-    <select id="select:advertiser:id" resultType="AdvertiserResult">
+    <select id="selectAdvertiserById" resultType="AdvertiserResult">
         SELECT id, advertiser_name, description, created_time, last_modified FROM advertiser WHERE id = #{id}
     </select>
 
-    <update id="update:advertiser">
+    <update id="updateAdvertiser">
         UPDATE advertiser
         <set>
             <if test="advertiserName != null">advertiser_name = #{advertiserName},</if>
@@ -28,11 +30,11 @@
         WHERE id = #{id}
     </update>
 
-    <delete id="delete:advertiser">
+    <delete id="deleteAdvertiser">
         DELETE FROM advertiser WHERE id = #{id}
     </delete>
 
-    <insert id="insert:advertiser">
+    <insert id="insertAdvertiser">
         INSERT INTO advertiser (id, advertiser_name, description, created_time)
         VALUES (#{id}, #{advertiserName}, #{description}, #{createdTime})
     </insert>

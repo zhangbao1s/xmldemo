@@ -11,7 +11,7 @@
 
     <plugins>
         <plugin interceptor="com.adchina.api.jdbc.paging.MySQLPagingInterceptor">
-            <property name="paging" value=":paging"/>
+            <property name="paging" value="Paging"/>
         </plugin>
     </plugins>
 

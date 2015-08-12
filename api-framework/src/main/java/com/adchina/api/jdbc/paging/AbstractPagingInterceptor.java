@@ -25,7 +25,7 @@ import org.apache.ibatis.session.RowBounds;
 public abstract class AbstractPagingInterceptor implements Interceptor {
 
     private static final String PROP_PAGING = "paging";
-    private static final String PROP_PAGING_DEFAULT = ":paging";
+    private static final String PROP_PAGING_DEFAULT = "Paging";
 
     private String paging;
 

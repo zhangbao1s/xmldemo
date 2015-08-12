@@ -32,11 +32,11 @@ public class AdvertiserService {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("whereCondition", whereCondition);
         paramMap.put("orderBy", orderBy);
-        return dataAccessor.selectPaging("select:advertiser:paging", paramMap, pageNumber, pageSize);
+        return dataAccessor.selectPaging("AdvertiserMapper.selectAdvertiserPaging", paramMap, pageNumber, pageSize);
     }
 
     public AdvertiserResult getAdvertiser(String advertiserId) {
-        AdvertiserResult advertiserResult = dataAccessor.selectOne("select:advertiser:id", advertiserId);
+        AdvertiserResult advertiserResult = dataAccessor.selectOne("AdvertiserMapper.selectAdvertiserById", advertiserId);
         if (advertiserResult == null) {
             throw new ServiceException(Message.QUERY_FAILURE);
         }
@@ -49,12 +49,12 @@ public class AdvertiserService {
         paramMap.put("id", advertiserId);
         paramMap.put("advertiserName", advertiserName);
         paramMap.put("description", description);
-        dataAccessor.update("update:advertiser", paramMap);
+        dataAccessor.update("AdvertiserMapper.updateAdvertiser", paramMap);
     }
 
     @Transactional
     public void deleteAdvertiser(String advertiserId) {
-        dataAccessor.update("delete:advertiser", advertiserId);
+        dataAccessor.update("AdvertiserMapper.deleteAdvertiser", advertiserId);
     }
 
     @Transactional
@@ -64,6 +64,6 @@ public class AdvertiserService {
         paramMap.put("advertiserName", advertiserName);
         paramMap.put("description", description);
         paramMap.put("createdTime", DateUtil.getCurrentDateTime());
-        dataAccessor.insert("insert:advertiser", paramMap);
+        dataAccessor.insert("AdvertiserMapper.insertAdvertiser", paramMap);
     }
 }

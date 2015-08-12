@@ -21,6 +21,21 @@
         <property name="password" value="${jdbc.password}"/>
         <property name="maxTotal" value="${jdbc.max_total}"/>
         <property name="maxIdle" value="${jdbc.max_idle}"/>
+        <property name="minIdle" value="${jdbc.min_idle}"/>
+        <property name="testOnBorrow" value="${jdbc.test_on_borrow}"/>
+        <property name="testOnReturn" value="${jdbc.test_on_return}"/>
+    </bean>
+    
+    <bean id="jedisPool" class="com.adchina.api.redis.JedisPoolFactoryBean">
+        <property name="host" value="${redis.host}"/>
+        <property name="port" value="${redis.port}"/>
+        <property name="password" value="${redis.password}"/>
+        <property name="timeout" value="${redis.timeout}"/>
+        <property name="maxTotal" value="${redis.max_total}"/>
+        <property name="maxIdle" value="${redis.max_idle}"/>
+        <property name="minIdle" value="${redis.min_idle}"/>
+        <property name="testOnBorrow" value="${redis.test_on_borrow}"/>
+        <property name="testOnReturn" value="${redis.test_on_return}"/>
     </bean>
 
     <import resource="classpath:spring-mybatis.xml"/>

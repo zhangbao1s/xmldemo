@@ -35,11 +35,10 @@
 
     <aop:aspectj-autoproxy proxy-target-class="true"/>
 
-    <bean id="tokenManager" class="com.adchina.api.security.impl.RedisTokenManager" init-method="init">
-        <property name="host" value="localhost"/>
-        <property name="port" value="6379"/>
-        <property name="password" value="123456"/>
+    <bean id="tokenManager" class="com.adchina.api.security.impl.RedisTokenManager">
+        <property name="jedisPool" ref="jedisPool"/>
         <property name="database" value="15"/>
+        <property name="seconds" value="3600"/>
     </bean>
 
     <bean id="securityAspect" class="com.adchina.api.security.SecurityAspect">

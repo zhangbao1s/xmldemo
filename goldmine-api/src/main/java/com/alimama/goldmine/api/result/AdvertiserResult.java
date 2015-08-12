@@ -1,5 +1,6 @@
 package com.alimama.goldmine.api.result;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -8,7 +9,7 @@ import java.util.Date;
  * @author huangyong
  * @since 1.0.0
  */
-public class AdvertiserResult {
+public class AdvertiserResult implements Serializable {
 
     private String id;
 

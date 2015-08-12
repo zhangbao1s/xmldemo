@@ -1,8 +1,15 @@
 # API Framework - 发布日志
 
+## v0.5.0 (2015-08-12)
+
+- 【功能】提供基于 Redis 的 TokenManager 实现
+- 【功能】提供基于 Redis 的 MyBatis 缓存特性
+- 【改进】修改 Log4J 路径
+- 【改进】简化 CorsFilter 参数配置
+
 ## v0.4.0 (2015-08-07)
 
-- 【功能】支持基于动态 token 的 REST 安全控制
+- 【功能】支持基于 token 的 REST 安全控制
 - 【改进】错误异常统一使用 HTTP 状态码
 
 ## v0.3.0 (2015-07-27)

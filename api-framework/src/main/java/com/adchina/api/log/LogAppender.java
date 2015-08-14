@@ -1,5 +1,6 @@
 package com.adchina.api.log;
 
+import com.adchina.api.jdbc.ConnectionContext;
 import com.adchina.api.util.ArrayUtil;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

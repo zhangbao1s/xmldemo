@@ -45,6 +45,13 @@ public final class PropsUtil {
     }
 
     /**
+     * 是否包含某属性
+     */
+    public static boolean containsKey(Properties props, String key) {
+        return props.containsKey(key);
+    }
+
+    /**
      * 获取字符型属性
      */
     public static String getString(Properties props, String key) {

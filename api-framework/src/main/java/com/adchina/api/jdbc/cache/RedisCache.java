@@ -42,29 +42,24 @@ public class RedisCache implements Cache {
         int timeout = PropsUtil.getInt(config, TIMEOUT);
         String password = PropsUtil.getString(config, PASSWORD);
 
-        JedisPoolConfig config = new JedisPoolConfig();
-        int maxTotal = PropsUtil.getInt(RedisCache.config, MAX_TOTAL);
-        if (maxTotal != 0) {
-            config.setMaxTotal(maxTotal);
+        JedisPoolConfig poolConfig = new JedisPoolConfig();
+        if (PropsUtil.containsKey(config, MAX_TOTAL)) {
+            poolConfig.setMaxTotal(PropsUtil.getInt(config, MAX_TOTAL));
         }
-        int maxIdle = PropsUtil.getInt(RedisCache.config, MAX_IDLE);
-        if (maxIdle != 0) {
-            config.setMaxIdle(maxIdle);
+        if (PropsUtil.containsKey(config, MAX_IDLE)) {
+            poolConfig.setMaxIdle(PropsUtil.getInt(config, MAX_IDLE));
         }
-        int minIdle = PropsUtil.getInt(RedisCache.config, MIN_IDLE);
-        if (minIdle != 0) {
-            config.setMinIdle(minIdle);
+        if (PropsUtil.containsKey(config, MIN_IDLE)) {
+            poolConfig.setMinIdle(PropsUtil.getInt(config, MIN_IDLE));
         }
-        boolean testOnBorrow = PropsUtil.getBoolean(RedisCache.config, TEST_ON_BORROW);
-        if (testOnBorrow) {
-            config.setTestOnBorrow(true);
+        if (PropsUtil.containsKey(config, TEST_ON_BORROW)) {
+            poolConfig.setTestOnBorrow(PropsUtil.getBoolean(config, TEST_ON_BORROW));
         }
-        boolean testOnReturn = PropsUtil.getBoolean(RedisCache.config, TEST_ON_RETURN);
-        if (testOnReturn) {
-            config.setTestOnReturn(true);
+        if (PropsUtil.containsKey(config, TEST_ON_RETURN)) {
+            poolConfig.setTestOnReturn(PropsUtil.getBoolean(config, TEST_ON_RETURN));
         }
 
-        pool = new JedisPool(config, host, port, timeout, password);
+        this.pool = new JedisPool(poolConfig, host, port, timeout, password);
     }
 
     @Override

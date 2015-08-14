@@ -66,10 +66,10 @@ public abstract class LogAppender extends AppenderSkeleton {
         StringBuilder error = new StringBuilder();
         if (ArrayUtil.isNotEmpty(lines)) {
             for (String line : lines) {
-                error.append(line);
+                error.append(line).append("\r\n");
             }
         }
-        return error.toString();
+        return error.toString().trim();
     }
 
     @Override

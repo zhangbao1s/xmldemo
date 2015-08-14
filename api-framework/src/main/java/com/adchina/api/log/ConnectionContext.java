@@ -30,7 +30,7 @@ public class ConnectionContext {
         dataSource.setPassword(PropsUtil.getString(config, "jdbc.password"));
     }
 
-    public static Connection getConnection() {
+    public static Connection connect() {
         Connection connection = connectionHolder.get();
         if (connection == null) {
             try {
@@ -46,13 +46,13 @@ public class ConnectionContext {
         return connection;
     }
 
-    public static void closeConnection() {
+    public static void release() {
         Connection connection = connectionHolder.get();
         if (connection != null) {
             try {
                 connection.close();
             } catch (SQLException e) {
-                logger.error("close connection failure", e);
+                logger.error("release connection failure", e);
                 throw new RuntimeException(e);
             }
             connectionHolder.remove();

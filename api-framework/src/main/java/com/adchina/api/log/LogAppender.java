@@ -19,24 +19,15 @@ public abstract class LogAppender extends AppenderSkeleton {
 
     private static Logger logger = LoggerFactory.getLogger(LogAppender.class);
 
-    private String app;
     private String sql;
-
-    public String getApp() {
-        return app;
-    }
-
-    public void setApp(String app) {
-        this.app = app;
-    }
 
     public void setSql(String sql) {
         this.sql = sql;
     }
 
     @Override
-    protected final void append(LoggingEvent event) {
-        Connection connection = ConnectionContext.getConnection();
+    protected final void append(final LoggingEvent event) {
+        Connection connection = ConnectionContext.connect();
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             setColumn(statement, event);
@@ -44,7 +35,7 @@ public abstract class LogAppender extends AppenderSkeleton {
         } catch (Exception e) {
             logger.error("insert database failure", e);
         } finally {
-            ConnectionContext.closeConnection();
+            ConnectionContext.release();
         }
     }
 

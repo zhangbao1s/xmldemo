@@ -3,6 +3,8 @@ package com.alimama.goldmine.api.log;
 import com.adchina.api.log.LogAppender;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import org.apache.log4j.spi.LoggingEvent;
 
 /**
@@ -13,14 +15,23 @@ import org.apache.log4j.spi.LoggingEvent;
  */
 public class AppLogAppender extends LogAppender {
 
+    private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private static SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss,SSS");
+
     @Override
     public void setColumn(PreparedStatement statement, LoggingEvent event) throws SQLException {
-        statement.setString(1, getApp());
-        statement.setLong(2, getTimeStamp(event));
-        statement.setString(3, getLevel(event));
-        statement.setString(4, getClassName(event));
-        statement.setString(5, getLineNumber(event));
-        statement.setString(6, getMessage(event));
-        statement.setString(7, getError(event));
+        long created = getTimeStamp(event);
+        Date date = new Date(created);
+        String createdDate = dateFormat.format(date);
+        String createdTime = timeFormat.format(date);
+
+        statement.setLong(1, created);
+        statement.setString(2, createdDate);
+        statement.setString(3, createdTime);
+        statement.setString(4, getLevel(event));
+        statement.setString(5, getClassName(event));
+        statement.setString(6, getLineNumber(event));
+        statement.setString(7, getMessage(event));
+        statement.setString(8, getError(event));
     }
 }

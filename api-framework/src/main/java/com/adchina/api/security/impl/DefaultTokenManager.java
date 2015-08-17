@@ -2,6 +2,7 @@ package com.adchina.api.security.impl;
 
 import com.adchina.api.security.TokenManager;
 import com.adchina.api.util.CodecUtil;
+import com.adchina.api.util.StringUtil;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -24,6 +25,6 @@ public class DefaultTokenManager implements TokenManager {
 
     @Override
     public boolean checkToken(String token) {
-        return tokenMap.containsKey(token);
+        return !StringUtil.isEmpty(token) && tokenMap.containsKey(token);
     }
 }

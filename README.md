@@ -17,21 +17,21 @@ mvn clean install
 ### 第二步：导入 SQL 脚本
 
 ```
-cd goldmine-api
+cd sample-api
 mysql -u root -p < doc/sql/schema.sql
 ```
 
-### 第三步：启动 goldmine-api 应用（后端）
+### 第三步：启动 sample-api 应用（后端）
 
 ```
-cd goldmine-api
+cd sample-api
 mvn clean package tomcat7:run
 ```
 
-### 第四步：启动 goldmine-web 应用（前端）
+### 第四步：启动 sample-web 应用（前端）
 
 ```
-cd goldmine-web
+cd sample-web
 mvn clean package tomcat7:run
 ```
 

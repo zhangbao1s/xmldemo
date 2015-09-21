@@ -1,5 +1,10 @@
 # API Framework - 发布日志
 
+## v0.8.0 (2015-09-21)
+
+- 【功能】在 CorsFilter 中添加 allowCredentials 配置
+- 【改进】使 CorsFilter 的 allowOrigin 属性支持多值
+
 ## v0.7.0 (2015-08-17)
 
 - 【功能】提供拦截器方式的 token 验证

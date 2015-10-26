@@ -34,7 +34,7 @@
                 <div class="form-group">
                     <div class="col-md-offset-4 col-md-8">
                         <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> 保存</button>
-                        <button type="button" class="btn" id="cancel"><i class="fa fa-reply"></i> 取消</button>
+                        <button type="button" class="btn btn-link" id="cancel">取消</button>
                     </div>
                 </div>
             </form>

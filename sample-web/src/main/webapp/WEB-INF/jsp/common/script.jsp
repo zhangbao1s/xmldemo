@@ -4,8 +4,8 @@
 <script src="http://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="http://cdn.bootcss.com/handlebars.js/3.0.3/handlebars.min.js"></script>
-<script src="http://cdn.bootcss.com/bootstrap-table/1.8.1/bootstrap-table.min.js"></script>
-<script src="http://cdn.bootcss.com/bootstrap-table/1.8.1/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap-table/1.9.0/bootstrap-table.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap-table/1.9.0/locale/bootstrap-table-zh-CN.min.js"></script>
 <script src="${CTX}/resources/script/global.js"></script>
 
 <script>

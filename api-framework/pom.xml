@@ -6,9 +6,9 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.adchina.api</groupId>
+    <groupId>com.xxx.api</groupId>
     <artifactId>api-framework</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -207,34 +207,5 @@
             </plugin>
         </plugins>
     </build>
-
-    <profiles>
-        <profile>
-            <id>adchina-nexus</id>
-            <distributionManagement>
-                <repository>
-                    <id>adchina-nexus-releases</id>
-                    <url>http://nexus.ycmsh.com/content/repositories/releases/</url>
-                </repository>
-                <snapshotRepository>
-                    <id>adchina-nexus-snapshots</id>
-                    <url>http://nexus.ycmsh.com/content/repositories/snapshots/</url>
-                </snapshotRepository>
-            </distributionManagement>
-        </profile>
-        <profile>
-            <id>alibaba-nexus</id>
-            <distributionManagement>
-                <repository>
-                    <id>alibaba-nexus-releases</id>
-                    <url>http://mvnrepo.alibaba-inc.com/nexus/content/repositories/releases/</url>
-                </repository>
-                <snapshotRepository>
-                    <id>alibaba-nexus-snapshots</id>
-                    <url>http://mvnrepo.alibaba-inc.com/nexus/content/repositories/snapshots/</url>
-                </snapshotRepository>
-            </distributionManagement>
-        </profile>
-    </profiles>
 
 </project>

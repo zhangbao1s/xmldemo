@@ -6,9 +6,9 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.alimama.sample</groupId>
+    <groupId>com.xxx.sample</groupId>
     <artifactId>sample-api</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>war</packaging>
 
     <properties>
@@ -54,9 +54,9 @@
         </dependency>
         <!-- API Framework -->
         <dependency>
-            <groupId>com.adchina.api</groupId>
+            <groupId>com.xxx.api</groupId>
             <artifactId>api-framework</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>1.0.0</version>
         </dependency>
     </dependencies>
 

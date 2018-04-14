@@ -52,7 +52,7 @@ var Ajax = {
             error: options.error
         });
     },
-    delete: function (options) {
+    delete1: function (options) {
         $.ajax({
             url: options.url,
             type: 'DELETE',
